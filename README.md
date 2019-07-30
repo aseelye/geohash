@@ -8,6 +8,8 @@ Decodes, encodes, finds neighbors
 >>> import geohash
 >>> geohash.encode(-122.3493, 47.6205)
 'c22yzv5cw8te'
+>>> geohash.encode(-122.3493, 47.6205, precision=8)
+'c22yzv5c'
 ```
 
 Encodes your coordinate point to a geohash.  Coordinates are always lon, lat, with optional precision.  Precision defaults to 12.
