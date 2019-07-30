@@ -16,6 +16,7 @@
 # 12      37.2mm    18.6mm
 
 from itertools import zip_longest
+from typing import Union
 
 
 base32 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'm', 'n', 'p',
@@ -42,7 +43,7 @@ def encode(lon: float, lat: float, precision: int = 12) -> str:
     return geohash
 
 
-def get_bits(degrees: float, precision: int, range_ends: int):
+def get_bits(degrees: float, precision: int, range_ends: int) -> str:
     """
     Gives the bit string of either lat or lon for zipping in encoding of geohash.
     :param degrees: The lon or lat, as a float
@@ -63,7 +64,7 @@ def get_bits(degrees: float, precision: int, range_ends: int):
     return result
 
 
-def decode(geohash: str, geotype: str = 'point'):
+def decode(geohash: str, geotype: str = 'point') -> Union[tuple, list]:
     """
     Decode geohash to point, pointerr, or polygon.
     point is (lon, lat) tuple.
@@ -89,7 +90,7 @@ def decode(geohash: str, geotype: str = 'point'):
     return response
 
 
-def get_degrees(bits: str, range_ends: int):
+def get_degrees(bits: str, range_ends: int) -> tuple:
     """
     Returns tuple of degrees and degree of precision
     :param bits: string of bits of the lon or lat from the geohash unpacking
@@ -108,7 +109,7 @@ def get_degrees(bits: str, range_ends: int):
     return degrees, precision
 
 
-def neighbors(geohash: str):
+def neighbors(geohash: str) -> list:
     geobits = get_geobits(geohash)
     lon_bits = geobits[::2]
     lat_bits = geobits[1::2]
@@ -132,7 +133,7 @@ def neighbors(geohash: str):
     return geo_list
 
 
-def get_geobits(geohash: str):
+def get_geobits(geohash: str) -> str:
     """
     Geohash in, bits out.
     :param geohash: string of the geohash
