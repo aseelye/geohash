@@ -14,11 +14,7 @@
 # 10      1.19m     0.596m
 # 11      149mm     149mm
 # 12      37.2mm    18.6mm
-#
-# Need to clean up neighbor code and sub-functions.
 
-import math
-import sys
 from itertools import zip_longest
 
 
@@ -86,7 +82,8 @@ def decode(geohash: str, geotype: str = 'point'):
     if geotype == 'pointerr':
         response = [lat, lon, lat_err, lon_err]
     elif geotype == 'polygon':
-        response = [((lon - lon_err), (lat - lat_err)), ((lon + lon_err), (lat - lat_err)), ((lon - lon_err), (lat + lat_err)), ((lon + lon_err), (lat + lat_err))]
+        response = [((lon - lon_err), (lat - lat_err)), ((lon + lon_err), (lat - lat_err)),
+                    ((lon - lon_err), (lat + lat_err)), ((lon + lon_err), (lat + lat_err))]
     else:
         response = (lon, lat)
     return response
